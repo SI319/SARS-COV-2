@@ -1,5 +1,5 @@
 ## Intrinsically disordered regions in SARS-COV-2
-#Python code for Chi-squared Test and ROC curve
+### Python code for Chi-squared Test and ROC curve
 file_path = "/content/stat.xlsx"
 #Load the Excel file into a DataFrame called 'df'
 df = pd.read_excel(file_path)
