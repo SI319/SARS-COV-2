@@ -1,4 +1,4 @@
-#Intrinsically disordered regions in SARS-COV-2
+## Intrinsically disordered regions in SARS-COV-2
 #Python code for Chi-squared Test and ROC curve
 file_path = "/content/stat.xlsx"
 #Load the Excel file into a DataFrame called 'df'
