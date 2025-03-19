@@ -19,7 +19,7 @@ import numpy as np
 import statsmodels.api as sm
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc
 import matplotlib.pyplot as plt
-### Logistic Regression (without VLXT)
+### Logistic Regression
 y = df['Experiment']
 X = df[['flDPnn', 'VLXT', 'VSL2', 'ADOPT']]
 X = sm.add_constant(X)  # Add a constant (intercept)
@@ -45,7 +45,7 @@ for model_name in models:
     print(f"Recall: {recall:.4f}")
     print(f"F1-score: {f1:.4f}")
 
-### ROC Curve Analysis (without VLXT)
+### ROC Curve Analysis
 plt.figure(figsize=(8, 6))
 for model_name in models:
     fpr, tpr, thresholds = roc_curve(df['Experiment'], df[model_name])
@@ -58,7 +58,7 @@ plt.title('ROC Curve')
 plt.legend(loc='lower right')
 plt.show()
 
-### Chi-squared odds ratio and risk ratio (without VLXT)
+### Chi-squared odds ratio and risk ratio
 from scipy.stats import chi2_contingency
 for model_name in models:
     contingency_table = pd.crosstab(df['Experiment'], df[model_name])
