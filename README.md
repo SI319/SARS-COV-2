@@ -3,20 +3,15 @@ import pandas as pd
 import numpy as np
 from scipy.stats import pointbiserialr, chi2_contingency, mannwhitneyu, kruskal, stats
 file_path = "/content/stat-MR.xlsx"
-
 ### Load the Excel file into a DataFrame called 'df'
 df = pd.read_excel(file_path)
-
-# Replace infinite values with NaN (if any)
+### Replace infinite values with NaN (if any)
 df.replace([np.inf, -np.inf], np.nan, inplace=True)
-
-# Drop rows with NaN values in the specified columns
+### Drop rows with NaN values in the specified columns
 df.dropna(subset=['Experiment', 'flDPnn', 'VLXT', 'VSL2', 'ADOPT'], inplace=True)
-
-# Define exp_column here
+### Define exp_column here
 exp_column = "Experiment"
-
-# --- Analysis for FlPDnn, VLXT, VSL2, Adopt ---
+### Analysis for FlPDnn, VLXT, VSL2, Adopt
 for column in ['flDPnn', 'VLXT', 'VSL2', 'ADOPT']:
     # Point-Biserial Correlation (for binary and continuous data)
     point_biserial_corr, pb_p_value = pointbiserialr(df[exp_column], df[column])
@@ -33,7 +28,7 @@ for column in ['flDPnn', 'VLXT', 'VSL2', 'ADOPT']:
     u_stat, p_value_u = mannwhitneyu(group_0, group_1)
     print(f"Mann-Whitney U Test (Exp vs. {column}): U-stat = {u_stat:.4f}, p-value = {p_value_u:.4f}")
 
-# Kruskal-Wallis H test (comparing all 4 columns with Exp) - can still be used for ordinal data (0/1)
+### Kruskal-Wallis H test (comparing all 4 columns with Exp) - can still be used for ordinal data (0/1)
 h_stat, p_value_h = kruskal(df[df[exp_column] == 0]['flDPnn'], df[df[exp_column] == 1]['flDPnn'],
                            df[df[exp_column] == 0]['VLXT'], df[df[exp_column] == 1]['VLXT'],
                            df[df[exp_column] == 0]['VSL2'], df[df[exp_column] == 1]['VSL2'],
