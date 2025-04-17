@@ -4,7 +4,7 @@ import numpy as np
 from scipy.stats import pointbiserialr, chi2_contingency, mannwhitneyu, kruskal, stats
 file_path = "/content/stat-MR.xlsx"
 
-# Load the Excel file into a DataFrame called 'df'
+### Load the Excel file into a DataFrame called 'df'
 df = pd.read_excel(file_path)
 
 # Replace infinite values with NaN (if any)
